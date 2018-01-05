@@ -10,8 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "prettier --write \"{apps,libs}/**/*.ts\"",
-    "build:libs": "ng-packagr -p libs/ngx-grid-layout/package.json",
-    "publish:libs": "yarn publish dist/@lacolaco/ngx-grid-layout"
+    "build:libs": "for lib in ngx-grid-layout store; do ng-packagr -p libs/${lib}/package.json; done",
+    "publish:libs": "for lib in ngx-grid-layout store; do yarn publish --cwd dist/@lacolaco/${lib} --access public; done"
   },
   "private": true,
   "dependencies": {
