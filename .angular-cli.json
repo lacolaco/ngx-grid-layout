@@ -75,6 +75,12 @@
       "root": "libs/ngx-grid-layout/src",
       "test": "../../../test.js",
       "appRoot": ""
+    },
+    {
+      "name": "store",
+      "root": "libs/store/src",
+      "test": "../../../test.js",
+      "appRoot": ""
     }
   ]
 }
