@@ -1,0 +1,10 @@
+<grid-layout id="container" 
+    [areas]="[['a', 'a', 'b'],['c', 'd', 'e']]" 
+    [columns]="['100px', '1fr', '200px']" 
+    [rows]="['100px', 'auto']">
+    <div gridArea="a" [style.background]="'red'">1</div>
+    <div gridArea="b" [style.background]="'blue'">2</div>
+    <div gridArea="c" [style.background]="'green'">3</div>
+    <div gridArea="d" [style.background]="'purple'">4</div>
+    <div gridArea="e" [style.background]="'orange'">5</div>
+</grid-layout>
