@@ -3,11 +3,8 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export abstract class Store<T> extends BehaviorSubject<T> {
-  constructor(initialState: T, onChangeFn: ((state: T) => void) | null) {
+  constructor(initialState: T) {
     super(initialState);
-    if (onChangeFn != null) {
-      this.subscribe(onChangeFn);
-    }
   }
 
   public dispatch(fn: (state: T) => T): void {
