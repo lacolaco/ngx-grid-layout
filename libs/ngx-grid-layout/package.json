@@ -12,6 +12,6 @@
         "lib": {
             "entryFile": "index.ts"
         },
-        "dest": "dist/@lacolaco/ngx-grid-layout"
+        "dest": "../../dist/@lacolaco/ngx-grid-layout"
     }
 }
