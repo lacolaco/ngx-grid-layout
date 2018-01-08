@@ -1,12 +1,12 @@
 {
     "name": "@lacolaco/ngx-store",
     "description": "@lacolaco/store for Angular",
-    "version": "0.1.1",
+    "version": "1.0.0",
     "license": "MIT",
     "repository": "https://github.com/lacolaco/ngx.git",
     "private": false,
     "dependencies": {
-        "@lacolaco/store": "^0.1.0"
+        "@lacolaco/store": "^1.0.0"
     },
     "ngPackage": {
         "lib": {
