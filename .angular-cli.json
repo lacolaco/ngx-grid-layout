@@ -77,6 +77,12 @@
       "appRoot": ""
     },
     {
+      "name": "ngx-store",
+      "root": "libs/ngx-store/src",
+      "test": "../../../test.js",
+      "appRoot": ""
+    },
+    {
       "name": "store",
       "root": "libs/store/src",
       "test": "../../../test.js",

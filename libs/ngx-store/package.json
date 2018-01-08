@@ -1,17 +1,17 @@
 {
-    "name": "@lacolaco/store",
-    "description": "A minimal implementation of state management",
+    "name": "@lacolaco/ngx-store",
+    "description": "@lacolaco/store for Angular",
     "version": "0.1.1",
     "license": "MIT",
     "repository": "https://github.com/lacolaco/ngx.git",
     "private": false,
-    "peerDependencies": {
-        "rxjs": "^5.5.0"
+    "dependencies": {
+        "@lacolaco/store": "^0.1.0"
     },
     "ngPackage": {
         "lib": {
             "entryFile": "index.ts"
         },
-        "dest": "../../dist/@lacolaco/store"
+        "dest": "../../dist/@lacolaco/ngx-store"
     }
 }
