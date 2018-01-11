@@ -1,20 +1,16 @@
 import { Injectable, InjectionToken, NgModule } from '@angular/core';
 
-import { Store } from '@lacolaco/store';
+import { Store, Middleware } from '@lacolaco/store';
 
 export const INITIAL_STATE_TOKEN = new InjectionToken<string>('INITIAL_STATE');
 export const STORE_CONFIG_TOKEN = new InjectionToken<StoreConfig>('STORE_CONFIG');
 
 export interface StoreConfig {
-  onStateChanged?: <T>(state: T, store: Store<T>) => void;
+  middlewares?: Middleware[];
 }
 
 export function rootStoreFactory<T>(initialState: T, storeConfig: StoreConfig) {
-  const store = new Store<T>(initialState);
-
-  if (typeof storeConfig.onStateChanged === 'function') {
-    store.subscribe(state => storeConfig.onStateChanged(state, store));
-  }
+  const store = new Store(initialState, storeConfig.middlewares);
   return store;
 }
 

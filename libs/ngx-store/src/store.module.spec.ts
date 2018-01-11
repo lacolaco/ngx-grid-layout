@@ -23,7 +23,7 @@ describe('StoreModule', () => {
       'should provide the root store',
       inject([Store], (store: Store<TestState>) => {
         expect(store).toBeDefined();
-        expect(store.selectSync(state => state.count)).toEqual(1);
+        expect(store.getValue().count).toEqual(1);
       }),
     );
   });
