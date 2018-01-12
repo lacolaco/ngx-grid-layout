@@ -16,6 +16,10 @@ $ npm i @lacolaco/store rxjs
 - TypeScript: Type-safe state management
 - Simple: Easy to understand what the library does and doesn't
 
+## Adapters
+
+- Angular: [@lacolaco/ngx-store](https://github.com/lacolaco/ngx/tree/master/libs/ngx-store)
+
 ## How to Use
 
 ### Create a store
