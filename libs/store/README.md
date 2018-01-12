@@ -1,30 +1,80 @@
-# store
+# @lacolaco/store
+
+A store implementation for state management with RxJS
+
+https://yarn.pm/@lacolaco/store
+
+## Install
+
+```
+$ npm i @lacolaco/store rxjs
+```
+
+## Concept
+
+- RxJS-based: Use the ecosystem
+- TypeScript: Type-safe state management
+- Simple: Easy to understand what the library does and doesn't
+
+## How to Use
+
+### Create a store
 
 ```ts
-const log = [];
-const store = new Store(1, [
-    // modify state pre-dispatch (earlier)
-    next => {
-        return state => {
-        return next(state * 2);
-        };
-    },
-    // modify state pre-dispatch (later)
-    next => {
-        return state => {
-        return next(state + 1);
-        };
-    },
-    // logging after post-dispatch
-    next => {
-        return state => {
-        state = next(state);
-        log.push(state);
-        return state;
-        };
-    },
+import { Store } from '@lacolaco/store';
+
+const store: Store<string> = new Store('initialState');
+assert.ok(store.getValue() === 'initialState');
+
+store.dispatch(state => 'updated!');
+assert.ok(store.getValue() === 'updated!');
+```
+
+### Subscribe state's observable
+
+```ts
+import { Store } from '@lacolaco/store';
+
+const store: Store<string> = new Store('initialState');
+
+store.subscribe(state => {
+    console.log(state);
+});
+
+store.dispatch(state => 'updated!');
+```
+
+### Select a scoped state
+
+```ts
+import { Store } from '@lacolaco/store';
+
+const store: Store<{count: number}> = new Store({count: 0});
+
+const count$: Observable<number> = store.select(state => state.count);
+count$.subscribe(count => {
+    console.log(count);
+});
+
+store.dispatch(state => {
+    return {
+        count: state.count + 1
+    };
+});
+```
+
+### Middleware: Intercept dispatching
+
+```ts
+import { Store, StateHandler, Middleware } from '@lacolaco/store';
+
+const loggingMiddleware: Middleware = (next: StateHandler) => {
+    const newState = next(state);
+    console.log(`[State]`, newState);
+    return newState;
+}
+
+const store = new Store(0, [
+    loggingMiddleware,
 ]);
-store.dispatch(state => 2); // 2 => 4 => 5
-store.dispatch(state => 3); // 3 => 6 => 7
-expect(log).toEqual([5, 7]);
 ```
