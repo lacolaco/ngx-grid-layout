@@ -68,10 +68,12 @@ store.dispatch(state => {
 ```ts
 import { Store, StateHandler, Middleware } from '@lacolaco/store';
 
-const loggingMiddleware: Middleware = (next: StateHandler) => {
-    const newState = next(state);
-    console.log(`[State]`, newState);
-    return newState;
+const loggingMiddleware: Middleware = (next: StateHandler): StateHandler => {
+    return (state: any) => {
+        const newState = next(state);
+        console.log(`[State]`, newState);
+        return newState;
+    };
 }
 
 const store = new Store(0, [
