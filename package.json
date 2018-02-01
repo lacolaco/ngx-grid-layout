@@ -21,7 +21,11 @@
     "publish:libs:ngx-grid-layout": "yarn publish --cwd dist/@lacolaco/ngx-grid-layout --access public",
     "publish:libs": "run-s publish:libs:*",
     "link:store": "cd dist/@lacolaco/store && yarn link && cd ../../../ && yarn link @lacolaco/store",
-    "postinstall": "run-s build:libs:store link:store"
+    "postinstall": "run-s build:libs:store link:store",
+    "changelog:libs:store": "standard-changelog -f -i libs/store/CHANGELOG.md -k libs/store/package.json -o libs/store/CHANGELOG.md --commit-path libs/store",
+    "changelog:libs:ngx-store": "standard-changelog -f -i libs/ngx-store/CHANGELOG.md -k libs/ngx-store/package.json -o libs/ngx-store/CHANGELOG.md --commit-path libs/ngx-store",
+    "changelog:libs:ngx-grid-layout": "standard-changelog -f -i libs/ngx-grid-layout/CHANGELOG.md -k libs/ngx-grid-layout/package.json -o libs/ngx-grid-layout/CHANGELOG.md --commit-path libs/ngx-grid-layout",
+    "changelog:libs": "run-p changelog:libs:*"
   },
   "private": true,
   "dependencies": {
@@ -63,6 +67,7 @@
     "npm-run-all": "^4.1.2",
     "prettier": "^1.9.0",
     "protractor": "~5.1.2",
+    "standard-changelog": "^1.0.8",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "2.5.3"
