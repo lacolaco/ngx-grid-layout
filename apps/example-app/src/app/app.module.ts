@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NxModule } from '@nrwl/nx';
 
 import { GridLayoutModule } from '@lacolaco/ngx-grid-layout';
-import { StoreModule } from '@lacolaco/ngx-store';
+import { StoreModule, STORE_MIDDLEWARE } from '@lacolaco/ngx-store';
 import { Middleware } from '@lacolaco/store';
 
 export function loggingMiddleware(next: Middleware) {
@@ -16,17 +16,8 @@ export function loggingMiddleware(next: Middleware) {
 }
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    NxModule.forRoot(),
-    GridLayoutModule,
-    StoreModule.forRoot(
-      {},
-      {
-        middlewares: [loggingMiddleware],
-      },
-    ),
-  ],
+  imports: [BrowserModule, NxModule.forRoot(), GridLayoutModule, StoreModule.forRoot({})],
+  providers: [{ provide: STORE_MIDDLEWARE, useValue: loggingMiddleware, multi: true }],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
 })

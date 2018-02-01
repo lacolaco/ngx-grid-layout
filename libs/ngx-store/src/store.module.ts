@@ -1,29 +1,36 @@
-import { Injectable, InjectionToken, NgModule } from '@angular/core';
+import { Inject, InjectionToken, NgModule, Optional, forwardRef } from '@angular/core';
 
 import { Store, Middleware } from '@lacolaco/store';
 
 export const INITIAL_STATE_TOKEN = new InjectionToken<string>('INITIAL_STATE');
-export const STORE_CONFIG_TOKEN = new InjectionToken<StoreConfig>('STORE_CONFIG');
 
-export interface StoreConfig {
-  middlewares?: Middleware[];
-}
+/**
+ * Should be used with `multi: true` option.
+ * ```
+ * providers: [
+ *   { provide: STORE_MIDDLEWARE, useValue: loggingMiddleware, multi: true },
+ * ],
+ * ```
+ */
+export const STORE_MIDDLEWARE = new InjectionToken<Middleware[]>('STORE_MIDDLEWARE');
 
-export function rootStoreFactory<T>(initialState: T, storeConfig: StoreConfig) {
-  const store = new Store(initialState, storeConfig.middlewares);
-  return store;
+export class NgxStore<T> extends Store<T> {
+  constructor(
+    @Inject(INITIAL_STATE_TOKEN) initialState: T,
+    @Optional()
+    @Inject(STORE_MIDDLEWARE)
+    middlewares: Middleware[] | null,
+  ) {
+    super(initialState, middlewares || []);
+  }
 }
 
 @NgModule({})
 export class StoreModule {
-  static forRoot<T>(initialState: T, config: StoreConfig = {}) {
+  static forRoot<T>(initialState: T) {
     return {
       ngModule: StoreModule,
-      providers: [
-        { provide: INITIAL_STATE_TOKEN, useValue: initialState },
-        { provide: STORE_CONFIG_TOKEN, useValue: config },
-        { provide: Store, useFactory: rootStoreFactory, deps: [INITIAL_STATE_TOKEN, STORE_CONFIG_TOKEN] },
-      ],
+      providers: [{ provide: INITIAL_STATE_TOKEN, useValue: initialState }, { provide: Store, useClass: NgxStore }],
     };
   }
 }
