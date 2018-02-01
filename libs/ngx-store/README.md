@@ -15,7 +15,7 @@ $ npm i @lacolaco/ngx-store
 ### Add to AppModule
 
 ```ts
-import { StoreModule } from '@lacolaco/ngx-store';
+import { StoreModule, STORE_MIDDLEWARE } from '@lacolaco/ngx-store';
 import { Middleware } from '@lacolaco/store';
 
 export function loggingMiddleware(next: Middleware) {
@@ -31,10 +31,10 @@ export function loggingMiddleware(next: Middleware) {
     BrowserModule,
     StoreModule.forRoot(
       { count: 0 },
-      { 
-        middlewares: [ loggingMiddleware ],
-      },
     ),
+  ],
+  providers: [
+    { provide: STORE_MIDDLEWARE, useValue: loggingMiddleware, multi: true },
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
