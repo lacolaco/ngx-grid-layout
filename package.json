@@ -22,9 +22,9 @@
     "publish:libs": "run-s publish:libs:*",
     "link:store": "cd dist/@lacolaco/store && yarn link && cd ../../../ && yarn link @lacolaco/store",
     "postinstall": "run-s build:libs:store link:store",
-    "changelog:libs:store": "standard-changelog -f -i libs/store/CHANGELOG.md -k libs/store/package.json -o libs/store/CHANGELOG.md --commit-path libs/store",
-    "changelog:libs:ngx-store": "standard-changelog -f -i libs/ngx-store/CHANGELOG.md -k libs/ngx-store/package.json -o libs/ngx-store/CHANGELOG.md --commit-path libs/ngx-store",
-    "changelog:libs:ngx-grid-layout": "standard-changelog -f -i libs/ngx-grid-layout/CHANGELOG.md -k libs/ngx-grid-layout/package.json -o libs/ngx-grid-layout/CHANGELOG.md --commit-path libs/ngx-grid-layout",
+    "changelog:libs:store": "standard-changelog -i libs/store/CHANGELOG.md -k libs/store/package.json -o libs/store/CHANGELOG.md --commit-path libs/store",
+    "changelog:libs:ngx-store": "standard-changelog -i libs/ngx-store/CHANGELOG.md -k libs/ngx-store/package.json -o libs/ngx-store/CHANGELOG.md --commit-path libs/ngx-store",
+    "changelog:libs:ngx-grid-layout": "standard-changelog -i libs/ngx-grid-layout/CHANGELOG.md -k libs/ngx-grid-layout/package.json -o libs/ngx-grid-layout/CHANGELOG.md --commit-path libs/ngx-grid-layout",
     "changelog:libs": "run-p changelog:libs:*"
   },
   "private": true,

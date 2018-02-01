@@ -1,7 +1,7 @@
 {
     "name": "@lacolaco/ngx-store",
     "description": "@lacolaco/store for Angular",
-    "version": "2.0.1",
+    "version": "3.0.0",
     "license": "MIT",
     "repository": "https://github.com/lacolaco/ngx.git",
     "private": false,
