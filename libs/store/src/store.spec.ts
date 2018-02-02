@@ -81,9 +81,10 @@ describe('Store', () => {
           };
         },
       ]);
+      // initialState: 1 => 2 => 3
       store.dispatch(state => 2); // 2 => 4 => 5
       store.dispatch(state => 3); // 3 => 6 => 7
-      expect(log).toEqual([5, 7]);
+      expect(log).toEqual([3, 5, 7]);
     });
   });
 });

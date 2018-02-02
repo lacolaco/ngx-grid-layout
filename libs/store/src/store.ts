@@ -11,18 +11,21 @@ export class Store<T> extends BehaviorSubject<T> {
   private handler: StateHandler;
 
   constructor(initialState: T, middlewares: Middleware[] = []) {
-    super(initialState);
-    this.handler = middlewares.reduceRight(
+    const handler = middlewares.reduceRight(
       (next: StateHandler, middleware: Middleware) => middleware(next),
-      state => {
-        this.next(state);
-        return state;
-      },
+      state => state,
     );
+    super(handler(initialState));
+    this.handler = handler;
+  }
+
+  // @override
+  next(value: T): void {
+    super.next(this.handler(value));
   }
 
   dispatch(fn: Reduce<T>): void {
-    this.handler(fn(this.getValue()));
+    this.next(fn(this.getValue()));
   }
 
   select<R>(fn: Select<T, R>): Observable<R> {
