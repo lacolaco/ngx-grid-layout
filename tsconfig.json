@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -16,8 +16,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@lacolaco/*": [
-        "libs/*"
+      "@lacolaco/ngx-store": [
+        "libs/ngx-store"
+      ],
+      "@lacolaco/ngx-grid-layout": [
+        "libs/ngx-grid-layout"
       ]
     }
   },

@@ -5,7 +5,7 @@ import { NxModule } from '@nrwl/nx';
 
 import { GridLayoutModule } from '@lacolaco/ngx-grid-layout';
 import { StoreModule, STORE_MIDDLEWARE } from '@lacolaco/ngx-store';
-import { Middleware } from '@lacolaco/store';
+import { Middleware } from '@lacolaco/reactive-store';
 
 export function loggingMiddleware(next: Middleware) {
   return state => {

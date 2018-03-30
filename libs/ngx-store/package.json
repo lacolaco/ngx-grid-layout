@@ -6,7 +6,7 @@
     "repository": "https://github.com/lacolaco/ngx.git",
     "private": false,
     "dependencies": {
-        "@lacolaco/store": "^2.0.0"
+        "@lacolaco/reactive-store": "^2.0.0"
     },
     "ngPackage": {
         "lib": {

@@ -1,6 +1,6 @@
-import { Inject, InjectionToken, NgModule, Optional, forwardRef } from '@angular/core';
+import { Injectable, Inject, InjectionToken, NgModule, Optional, forwardRef, Injector } from '@angular/core';
 
-import { Store, Middleware } from '@lacolaco/store';
+import { Store, Middleware } from '@lacolaco/reactive-store';
 
 export const INITIAL_STATE_TOKEN = new InjectionToken<string>('INITIAL_STATE');
 
@@ -14,23 +14,25 @@ export const INITIAL_STATE_TOKEN = new InjectionToken<string>('INITIAL_STATE');
  */
 export const STORE_MIDDLEWARE = new InjectionToken<Middleware[]>('STORE_MIDDLEWARE');
 
-export class NgxStore<T> extends Store<T> {
-  constructor(
-    @Inject(INITIAL_STATE_TOKEN) initialState: T,
-    @Optional()
-    @Inject(STORE_MIDDLEWARE)
-    middlewares: Middleware[] | null,
-  ) {
-    super(initialState, middlewares || []);
-  }
+export function storeFactory<T>(initialState: T, injector: Injector): Store<T> {
+  const middlewares = injector.get(STORE_MIDDLEWARE, []);
+  return new Store(initialState, middlewares);
 }
 
 @NgModule({})
-export class StoreModule {
+export class ReactiveStoreModule {
   static forRoot<T>(initialState: T) {
     return {
-      ngModule: StoreModule,
-      providers: [{ provide: INITIAL_STATE_TOKEN, useValue: initialState }, { provide: Store, useClass: NgxStore }],
+      ngModule: ReactiveStoreModule,
+      providers: [
+        { provide: INITIAL_STATE_TOKEN, useValue: initialState },
+        { provide: Store, useFactory: storeFactory, deps: [INITIAL_STATE_TOKEN, Injector] },
+      ],
     };
   }
 }
+
+/**
+ * @deprecated use ReactiveStoreModule
+ */
+export const StoreModule = ReactiveStoreModule;

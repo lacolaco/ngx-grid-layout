@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@lacolaco/store';
+import { Store } from '@lacolaco/reactive-store';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      this.store.dispatch(state => ({ count: (state.count || 0) + 1 }));
+      this.store.patch(state => ({ count: (state.count || 0) + 1 }));
     }, 1000);
   }
 }
