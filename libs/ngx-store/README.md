@@ -1,6 +1,6 @@
 # @lacolaco/ngx-store
 
-Angular module for [@lacolaco/store](https://github.com/lacolaco/ngx/tree/master/libs/store)
+Angular module for [@lacolaco/reactive-store](https://github.com/lacolaco/reactive-store)
 
 https://yarn.pm/@lacolaco/ngx-store
 
@@ -15,8 +15,8 @@ $ npm i @lacolaco/ngx-store
 ### Add to AppModule
 
 ```ts
-import { StoreModule, STORE_MIDDLEWARE } from '@lacolaco/ngx-store';
-import { Middleware } from '@lacolaco/store';
+import { ReactiveStoreModule, STORE_MIDDLEWARE } from '@lacolaco/ngx-store';
+import { Middleware } from '@lacolaco/reactive-store';
 
 export function loggingMiddleware(next: Middleware) {
   return state => {
@@ -29,7 +29,7 @@ export function loggingMiddleware(next: Middleware) {
 @NgModule({
   imports: [
     BrowserModule,
-    StoreModule.forRoot(
+    ReactiveStoreModule.forRoot(
       { count: 0 },
     ),
   ],
@@ -46,7 +46,7 @@ export class AppModule {}
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@lacolaco/store';
+import { Store } from '@lacolaco/reactive-store';
 
 @Component({
   selector: 'app-root',
@@ -58,10 +58,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      this.store.dispatch(state => ({ count: state.count + 1 }));
+      this.store.patch(state => ({ count: state.count + 1 }));
     }, 1000);
   }
 }
 ```
 
-Learn more about `Store` API: [@lacolaco/store](https://github.com/lacolaco/ngx/tree/master/libs/store)
+Learn more about `Store` API: [@lacolaco/reactive-store](https://github.com/lacolaco/reactive-store)
