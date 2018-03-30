@@ -1,3 +1,22 @@
+<a name="4.0.0"></a>
+# 4.0.0 (2018-03-30)
+
+
+### Features
+
+* switch to [@lacolaco](https://github.com/lacolaco)/reactive-store ([75b42c1](https://github.com/lacolaco/ngx/commit/75b42c1))
+
+
+### BREAKING CHANGES
+
+* @lacolaco/store -> @lacolaco/reactive-store
+
+Store.dispatch -> Store.patch
+* **ngx-store:** `STORE_CONFIG` token is removed.
+Use `STORE_MIDDLEWARE` to set middlewares instead.
+
+
+
 <a name="3.0.0"></a>
 # 3.0.0 (2018-02-01)
 
