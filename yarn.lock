@@ -151,6 +151,10 @@
   dependencies:
     tslib "^1.7.1"
 
+"@lacolaco/reactive-store@^2.0.0":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@lacolaco/reactive-store/-/reactive-store-2.0.1.tgz#88326792f294e1360945fb6a471fc5d3c42d59fa"
+
 "@ngrx/effects@4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-4.1.1.tgz#cb758b8527964b258ea41951f59aa144e3ef9fae"
@@ -5742,9 +5746,15 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^5.5.2, rxjs@^5.5.6:
+rxjs@^5.5.6:
   version "5.5.6"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.6.tgz#e31fb96d6fd2ff1fd84bcea8ae9c02d007179c02"
+  dependencies:
+    symbol-observable "1.0.1"
+
+rxjs@^5.6.0-forward-compat.0:
+  version "5.6.0-forward-compat.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.6.0-forward-compat.2.tgz#0ca90dcca87c00707ab0ac1e64fb96f011e7fd11"
   dependencies:
     symbol-observable "1.0.1"
 

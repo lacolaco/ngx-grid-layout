@@ -1,1 +1,1 @@
-export { StoreModule, STORE_MIDDLEWARE } from './src/store.module';
+export { ReactiveStoreModule, StoreModule, STORE_MIDDLEWARE } from './src/store.module';

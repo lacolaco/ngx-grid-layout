@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { async, inject, TestBed } from '@angular/core/testing';
 
-import { Store, Middleware } from '@lacolaco/store';
+import { Store, Middleware } from '@lacolaco/reactive-store';
 
-import { StoreModule, STORE_MIDDLEWARE } from './store.module';
+import { ReactiveStoreModule, STORE_MIDDLEWARE } from './store.module';
 
 interface TestState {
   count: number;
@@ -14,7 +14,7 @@ describe('StoreModule', () => {
     beforeEach(
       async(() => {
         TestBed.configureTestingModule({
-          imports: [StoreModule.forRoot({ count: 1 })],
+          imports: [ReactiveStoreModule.forRoot({ count: 1 })],
         });
       }),
     );
@@ -32,7 +32,7 @@ describe('StoreModule', () => {
     beforeEach(
       async(() => {
         TestBed.configureTestingModule({
-          imports: [StoreModule.forRoot({ count: 1 })],
+          imports: [ReactiveStoreModule.forRoot({ count: 1 })],
           providers: [
             {
               provide: 'foo',
@@ -56,7 +56,7 @@ describe('StoreModule', () => {
       inject([Store], (store: Store<TestState>) => {
         expect(store).toBeDefined();
         // trigger middleware
-        store.dispatch(state => ({ ...state }));
+        store.patch(state => ({ ...state }));
         expect(store.getValue() as any).toEqual('foo');
       }),
     );
