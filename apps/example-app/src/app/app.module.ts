@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NxModule } from '@nrwl/nx';
 
 import { GridLayoutModule } from '@lacolaco/ngx-grid-layout';
 import { StoreModule, STORE_MIDDLEWARE } from '@lacolaco/ngx-store';
@@ -16,7 +15,7 @@ export function loggingMiddleware(next: Middleware) {
 }
 
 @NgModule({
-  imports: [BrowserModule, NxModule.forRoot(), GridLayoutModule, StoreModule.forRoot({})],
+  imports: [BrowserModule, GridLayoutModule, StoreModule.forRoot({})],
   providers: [{ provide: STORE_MIDDLEWARE, useValue: loggingMiddleware, multi: true }],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
