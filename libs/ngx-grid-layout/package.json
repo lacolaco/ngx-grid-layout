@@ -6,7 +6,7 @@
     "repository": "https://github.com/lacolaco/ngx.git",
     "private": false,
     "peerDependencies": {
-        "@angular/core": "^5.0.0"
+        "@angular/core": ">=5.0.0"
     },
     "ngPackage": {
         "lib": {
