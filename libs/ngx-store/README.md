@@ -4,6 +4,8 @@ Angular module for [@lacolaco/reactive-store](https://github.com/lacolaco/reacti
 
 https://yarn.pm/@lacolaco/ngx-store
 
+[![@lacolaco/ngx-store Dev Token](https://badge.devtoken.rocks/@lacolaco/ngx-store)](https://devtoken.rocks/package/@lacolaco/ngx-store)
+
 ## Install
 
 ```
