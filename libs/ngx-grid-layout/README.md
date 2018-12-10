@@ -4,6 +4,8 @@ An Angular module to construct layout with CSS Grid Layout
 
 https://yarn.pm/@lacolaco/ngx-grid-layout
 
+[![@lacolaco/ngx-grid-layout Dev Token](https://badge.devtoken.rocks/@lacolaco/ngx-grid-layout)](https://devtoken.rocks/package/@lacolaco/ngx-grid-layout)
+
 ## Install
 
 ```
