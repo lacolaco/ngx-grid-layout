@@ -92,27 +92,6 @@
           }
         }
       }
-    },
-    "ngx-store": {
-      "root": "",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "project": "libs/ngx-store/package.json"
-          },
-          "configurations": {
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["./tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
     }
   },
   "cli": {

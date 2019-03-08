@@ -11,13 +11,10 @@
     "lint": "ng lint",
     "ci:test": "run-s lint build:libs test:ci",
     "format": "prettier --write \"{apps,libs}/**/*.ts\"",
-    "build:libs:ngx-store": "ng build ngx-store",
     "build:libs:ngx-grid-layout": "ng build ngx-grid-layout",
     "build:libs": "run-p build:libs:*",
-    "publish:libs:ngx-store": "yarn publish --cwd dist/@lacolaco/ngx-store --access public",
     "publish:libs:ngx-grid-layout": "yarn publish --cwd dist/@lacolaco/ngx-grid-layout --access public",
     "publish:libs": "run-s publish:libs:*",
-    "changelog:libs:ngx-store": "standard-changelog -i libs/ngx-store/CHANGELOG.md -k libs/ngx-store/package.json -o libs/ngx-store/CHANGELOG.md --commit-path libs/ngx-store",
     "changelog:libs:ngx-grid-layout": "standard-changelog -i libs/ngx-grid-layout/CHANGELOG.md -k libs/ngx-grid-layout/package.json -o libs/ngx-grid-layout/CHANGELOG.md --commit-path libs/ngx-grid-layout",
     "changelog:libs": "run-p changelog:libs:*"
   },
