@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { GridLayoutModule } from '@lacolaco/ngx-grid-layout';
-import { StoreModule } from '@lacolaco/ngx-store';
 
 import { AppComponent } from './app.component';
 
@@ -11,7 +10,7 @@ describe('AppComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [GridLayoutModule, StoreModule.forRoot({})],
+        imports: [GridLayoutModule],
         declarations: [AppComponent],
       }).compileComponents();
     }),
