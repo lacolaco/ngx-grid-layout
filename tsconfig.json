@@ -16,9 +16,6 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@lacolaco/ngx-store": [
-        "libs/ngx-store"
-      ],
       "@lacolaco/ngx-grid-layout": [
         "libs/ngx-grid-layout"
       ]
