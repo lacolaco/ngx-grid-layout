@@ -3,9 +3,9 @@
   "description": "An Angular module to construct layout with CSS Grid Layout",
   "version": "0.2.6",
   "license": "MIT",
-  "repository": "https://github.com/lacolaco/ngx.git",
+  "repository": "https://github.com/lacolaco/ngx-grid-layout.git",
   "private": false,
   "peerDependencies": {
-    "@angular/core": ">=5.0.0"
+    "@angular/core": ">=8.2.14"
   }
 }
