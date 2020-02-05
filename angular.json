@@ -3,25 +3,43 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "example-app": {
-      "root": "apps/example-app",
-      "sourceRoot": "apps/example-app/src",
+    "playground": {
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/playground",
+      "sourceRoot": "projects/playground/src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../../dist/apps/example-app",
-            "index": "apps/example-app/src/index.html",
-            "main": "apps/example-app/src/main.ts",
-            "tsConfig": "apps/example-app/src/tsconfig.app.json",
-            "polyfills": "apps/example-app/src/polyfills.ts",
-            "assets": ["apps/example-app/src/assets", "apps/example-app/src/favicon.ico"],
-            "styles": ["apps/example-app/src/styles.css"],
+            "outputPath": "dist/playground",
+            "index": "projects/playground/src/index.html",
+            "main": "projects/playground/src/main.ts",
+            "polyfills": "projects/playground/src/polyfills.ts",
+            "tsConfig": "projects/playground/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/playground/src/favicon.ico",
+              "projects/playground/src/assets"
+            ],
+            "styles": [
+              "projects/playground/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/playground/src/environments/environment.ts",
+                  "with": "projects/playground/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -31,10 +49,16 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [
+              "budgets": [
                 {
-                  "replace": "apps/example-app/src/environments/environment.ts",
-                  "with": "apps/example-app/src/environments/environment.prod.ts"
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -43,60 +67,85 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "example-app:build"
+            "browserTarget": "playground:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "example-app:build:production"
+              "browserTarget": "playground:build:production"
             }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "playground:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "test.js",
-            "polyfills": "apps/example-app/src/polyfills.ts",
-            "assets": ["apps/example-app/src/assets", "apps/example-app/src/favicon.ico"],
-            "styles": ["apps/example-app/src/styles.css"],
-            "scripts": [],
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js"
+            "main": "projects/playground/src/test.ts",
+            "polyfills": "projects/playground/src/polyfills.ts",
+            "tsConfig": "projects/playground/tsconfig.spec.json",
+            "karmaConfig": "projects/playground/karma.conf.js",
+            "assets": [
+              "projects/playground/src/favicon.ico",
+              "projects/playground/src/assets"
+            ],
+            "styles": [
+              "projects/playground/src/styles.scss"
+            ],
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/playground/tsconfig.app.json",
+              "projects/playground/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     },
     "ngx-grid-layout": {
-      "root": "",
       "projectType": "library",
+      "root": "projects/ngx-grid-layout",
+      "sourceRoot": "projects/ngx-grid-layout/src",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "project": "libs/ngx-grid-layout/package.json"
-          },
-          "configurations": {
+            "tsConfig": "projects/ngx-grid-layout/tsconfig.lib.json",
+            "project": "projects/ngx-grid-layout/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-grid-layout/src/test.ts",
+            "tsConfig": "projects/ngx-grid-layout/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-grid-layout/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["./tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/ngx-grid-layout/tsconfig.lib.json",
+              "projects/ngx-grid-layout/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
-    }
-  },
-  "cli": {
-    "warnings": {
-      "typescriptMismatch": false
-    }
-  }
+    }},
+  "defaultProject": "playground"
 }
