@@ -10,7 +10,7 @@
     "test:ci": "ng test --progress false",
     "lint": "ng lint",
     "ci:test": "run-s lint build:libs test:ci",
-    "format": "prettier --write \"{apps,libs}/**/*.ts\"",
+    "format": "prettier --write \"{src,libs}/**/*.ts\"",
     "build:libs:ngx-grid-layout": "ng build ngx-grid-layout",
     "build:libs": "run-p build:libs:*",
     "publish:libs:ngx-grid-layout": "yarn publish --cwd dist/@lacolaco/ngx-grid-layout --access public",
